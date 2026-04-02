@@ -270,7 +270,11 @@
       object-fit: cover;
       opacity: 0.28;
       mix-blend-mode: luminosity;
+      pointer-events: none;
     }
+    .hero-bg video::-webkit-media-controls { display: none !important; }
+    .hero-bg video::-webkit-media-controls-enclosure { display: none !important; }
+    .hero-bg video::-webkit-media-controls-panel { display: none !important; }
     .hero-bg::after {
       content: '';
       position: absolute;
@@ -323,8 +327,8 @@
     }
     .hero-title {
       font-family: 'Libre Baskerville', serif;
-      font-size: clamp(72px, 10vw, 148px);
-      line-height: 0.92;
+      font-size: clamp(48px, 10vw, 148px);
+      line-height: 1;
       letter-spacing: -0.03em;
       margin-bottom: 56px;
       max-width: 960px;
@@ -1154,9 +1158,10 @@
     .char-line {
       display: block;
       overflow: hidden;
-      /* Match the heading's own line-height so no extra gap leaks out */
-      line-height: 0.92;
-      padding-bottom: 0.06em; /* room for descenders inside clip */
+      white-space: nowrap;  /* prevents comma orphaning mid-line */
+      line-height: 1;
+      padding-bottom: 0.08em;
+      margin-bottom: -0.02em;
     }
     .char {
       display: inline-block;
@@ -1259,13 +1264,19 @@
       .footer-top { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      #nav        { padding: 0 24px; }
+      #nav        { padding: 0 24px; height: 64px; }
+      .nav-logo   { height: 52px; }
       .nav-links a:not(.nav-cta) { display: none; }
       .hero       { padding: 0 24px 56px; }
-      .hero-top-bar { left: 24px; right: 24px; }
-      .hero-footer-row { flex-direction: column; align-items: flex-start; gap: 28px; }
+      .hero-top-bar { display: none; }
+      .hero-index { font-size: 9px; margin-bottom: 16px; }
+      .hero-title { margin-bottom: 36px; }
+      .hero-footer-row { flex-direction: column; align-items: flex-start; gap: 24px; }
       .hero-stats-row { border-left: none; }
+      .hero-stat { padding: 0 20px; }
       .hero-stat:first-child { padding-left: 0; }
+      .stat-num { font-size: 28px; }
+      .hero-desc { font-size: 13px; }
       .ns-inner   { padding: 80px 24px; }
       .ns-header  { flex-direction: column; gap: 14px; }
       .ns-index   { padding-top: 0; }
@@ -1312,7 +1323,7 @@
   <!-- ── Hero ── -->
   <section class="hero" id="home">
     <div class="hero-bg" aria-hidden="true">
-      <video src="4177973-hd_1920_1080_30fps.mp4" autoplay muted loop playsinline></video>
+      <video src="4177973-hd_1920_1080_30fps.mp4" autoplay muted loop playsinline disablepictureinpicture></video>
     </div>
 
     <div class="hero-top-bar" aria-hidden="true">
