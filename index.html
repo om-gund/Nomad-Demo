@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Nomad Barber Co. — Mobile Barbershop | Chillicothe, OH</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
@@ -190,7 +190,8 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 500;
-      padding: 0 60px;
+      /* Extend into safe areas so no gap beside Dynamic Island */
+      padding: 0 max(60px, env(safe-area-inset-right, 0px)) 0 max(60px, env(safe-area-inset-left, 0px));
       height: 76px;
       display: flex;
       align-items: center;
@@ -1264,7 +1265,7 @@
       .footer-top { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      #nav        { padding: 0 24px; height: 64px; }
+      #nav        { padding: 0 max(24px, env(safe-area-inset-right, 0px)) 0 max(24px, env(safe-area-inset-left, 0px)); height: 64px; }
       .nav-logo   { height: 52px; }
       .nav-links a:not(.nav-cta) { display: none; }
       .hero       { padding: 0 24px 56px; }
