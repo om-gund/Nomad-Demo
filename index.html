@@ -203,6 +203,16 @@
       border-bottom: 1px solid transparent;
       transition: border-color 0.45s ease, background 0.45s ease, backdrop-filter 0.45s ease;
     }
+    /* Pseudo covers the safe-area zone above the nav at all times */
+    #nav::before {
+      content: '';
+      position: absolute;
+      top: calc(-1 * env(safe-area-inset-top, 0px));
+      left: 0; right: 0;
+      height: env(safe-area-inset-top, 0px);
+      background: inherit;
+      pointer-events: none;
+    }
     #nav.scrolled {
       background: rgba(14,14,14,0.97);
       border-color: var(--divider);
@@ -240,7 +250,12 @@
       opacity: 1 !important;
       background: var(--crimson);
       border: 1px solid var(--crimson);
-      padding: 5px 26px;
+      /* inline-flex + line-height:1 kills the ghost bottom space */
+      display: inline-flex !important;
+      align-items: center;
+      height: 36px;
+      padding: 0 22px !important;
+      line-height: 1 !important;
       overflow: hidden;
       transition: background 0.28s ease, transform 0.22s ease, box-shadow 0.28s ease !important;
     }
