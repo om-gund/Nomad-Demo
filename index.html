@@ -190,7 +190,6 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 500;
-      /* Fill safe-area-inset-top (Dynamic Island / notch) */
       padding-top: env(safe-area-inset-top, 0px);
       padding-left: max(60px, env(safe-area-inset-left, 0px));
       padding-right: max(60px, env(safe-area-inset-right, 0px));
@@ -199,8 +198,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      /* Always has a background so safe-area padding is always filled */
+      background: rgba(14,14,14,0);
       border-bottom: 1px solid transparent;
-      transition: border-color 0.45s ease, background 0.45s ease;
+      transition: border-color 0.45s ease, background 0.45s ease, backdrop-filter 0.45s ease;
     }
     #nav.scrolled {
       background: rgba(14,14,14,0.97);
@@ -239,7 +240,7 @@
       opacity: 1 !important;
       background: var(--crimson);
       border: 1px solid var(--crimson);
-      padding: 14px 26px;
+      padding: 5px 26px;
       overflow: hidden;
       transition: background 0.28s ease, transform 0.22s ease, box-shadow 0.28s ease !important;
     }
